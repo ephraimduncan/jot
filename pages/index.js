@@ -127,6 +127,7 @@ export default function Home() {
                         setActiveNote(note.id);
                         setNote(note.note);
                       }}
+                      key={notes.id}
                     >
                       <span>📍 {tn}</span>
                       <span
