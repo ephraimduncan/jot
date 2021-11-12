@@ -2,17 +2,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, iA Writer Mono V, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
+  font-family: -apple-system, JetBrains Mono, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 * {
   box-sizing: border-box;
-}
-
-main {
-  height: 100vh;
 }
 
 textarea {
@@ -21,7 +16,6 @@ textarea {
   resize: none;
   outline: none;
   color: inherit;
-  -webkit-text-fill-color: transparent;
 }
 
 pre {
@@ -42,11 +36,10 @@ pre {
 
 pre,
 textarea {
-  line-height: 1.7;
+  /* line-height: 1.7; */
   font-size: 1rem;
   font-family: var(--font-sans);
   word-wrap: break-word;
   height: 100vh;
-  width: 100vw;
-  padding: 2rem;
+  width: 100%;
 }
