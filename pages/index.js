@@ -1,7 +1,7 @@
-import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { blue, indigo, tomato } from "@radix-ui/colors";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const commonStyle = {
   padding: "2rem",
@@ -13,7 +13,7 @@ const sidebarStyle = {
   background: tomato.tomato3,
   width: "25%",
   color: tomato.tomato11,
-  borderRight: `1px solid ${blue.blue6}`,
+  borderRight: `1px solid ${blue.blue5}`,
 };
 
 const mainSpaceStyle = {
@@ -24,7 +24,7 @@ const mainSpaceStyle = {
 };
 
 export default function Home() {
-  const [text, setText] = useState("");
+  const [note, setNote] = useLocalStorage("note", "");
 
   return (
     <div>
@@ -47,13 +47,13 @@ export default function Home() {
           </div>
           <div style={mainSpaceStyle}>
             <textarea
-              value={text}
+              value={note}
               placeholder="Type your note here"
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => setNote(e.target.value)}
               spellCheck={false}
               autoFocus
             />
-            <pre aria-hidden>{text}</pre>
+            <pre aria-hidden>{note}</pre>
           </div>
         </div>
       </main>
