@@ -2,3 +2,23 @@
   display: flex;
   height: 100%;
 }
+
+.addButton {
+  background-color: var(--red3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  color: var(--red11);
+  border-width: 0px;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+}
+
+.addButton:hover {
+  background-color: var(--red4) !important;
+}
