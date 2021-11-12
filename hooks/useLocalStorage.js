@@ -5,6 +5,11 @@ export const useLocalStorage = (key, defaultValue) => {
 
   useEffect(() => {
     const initialValue = localStorage.getItem(key);
+
+    if (!initialValue) {
+      localStorage.setItem(key, JSON.stringify(defaultValue));
+    }
+
     setValue(JSON.parse(initialValue));
   }, []);
 

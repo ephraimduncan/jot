@@ -83,10 +83,10 @@ function removeFromArray(arr, id) {
 export default function Home() {
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [note, setNote] = useLocalStorage("note", "");
-  const [activeNote, setActiveNote] = useLocalStorage("activeNote", 0);
+  const [activeNote, setActiveNote] = useLocalStorage("activeNote", 1);
   const [highestActiveNote, setHighestActiveNote] = useLocalStorage(
     "highestActiveNote",
-    0
+    1
   );
 
   return (
@@ -95,7 +95,7 @@ export default function Home() {
         <title>Writer</title>
         <meta name="description" content="Simple Note Taking App" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500&display=swap"
           rel="stylesheet"
@@ -131,7 +131,7 @@ export default function Home() {
                       <span
                         className={styles.trash}
                         onClick={() => {
-                          setNote(" ");
+                          note.note = "";
                           setNotes(removeFromArray(notes, note.id));
                         }}
                       >
@@ -160,16 +160,21 @@ export default function Home() {
             />
             <pre aria-hidden>{note}</pre>
 
-            <button
-              className={styles.addButton}
-              onClick={() => {
-                setNote("");
-                setActiveNote(highestActiveNote++);
-                setHighestActiveNote(highestActiveNote++);
-              }}
-            >
-              <PlusComponent />
-            </button>
+            {notes && (
+              <button
+                className={styles.addButton}
+                onClick={() => {
+                  setNote("");
+                  setHighestActiveNote(highestActiveNote++);
+                  notes.push({ id: highestActiveNote, note: "" });
+
+                  setActiveNote(highestActiveNote++);
+                  setHighestActiveNote(highestActiveNote++);
+                }}
+              >
+                <PlusComponent />
+              </button>
+            )}
           </div>
         </div>
       </main>
