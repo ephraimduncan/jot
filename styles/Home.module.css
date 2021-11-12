@@ -4,7 +4,7 @@
 }
 
 .addButton {
-  background-color: var(--red3);
+  background-color: var(--red6);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15,12 +15,12 @@
   color: var(--red11);
   border-width: 0px;
   position: fixed;
-  top: 2rem;
+  bottom: 2rem;
   right: 2rem;
 }
 
 .addButton:hover {
-  background-color: var(--red4) !important;
+  background-color: var(--red7) !important;
 }
 
 .trash:hover {

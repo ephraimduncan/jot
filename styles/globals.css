@@ -53,7 +53,7 @@ textarea {
 }
 
 #sidebar::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   background-color: var(--red3);
 }
 
@@ -67,7 +67,7 @@ textarea::-webkit-scrollbar-track {
 }
 
 textarea::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   background-color: var(--indigo3);
 }
 
