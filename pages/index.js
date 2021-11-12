@@ -84,6 +84,10 @@ export default function Home() {
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [note, setNote] = useLocalStorage("note", "");
   const [activeNote, setActiveNote] = useLocalStorage("activeNote", 0);
+  const [highestActiveNote, setHighestActiveNote] = useLocalStorage(
+    "highestActiveNote",
+    0
+  );
 
   return (
     <div>
@@ -103,35 +107,39 @@ export default function Home() {
         <div className={styles.main}>
           <div style={sidebarStyle}>
             <div>
-              {notes.map((note) => {
-                const tn = truncate(note.note, 15);
-                return (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignContent: "center",
-                      marginBottom: "1rem",
-                      cursor: "default",
-                      padding: "1rem",
-                      borderRadius: "6px",
-                      background: red.red4,
-                    }}
-                    onClick={() => {
-                      setActiveNote(note.id);
-                      setNote(note.note);
-                    }}
-                  >
-                    <span>📍 {tn}</span>
-                    <span
-                      className={styles.trash}
-                      onClick={() => setNotes(removeFromArray(notes, note.id))}
+              {notes &&
+                notes.map((note) => {
+                  const tn = truncate(note.note, 15);
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignContent: "center",
+                        marginBottom: "1rem",
+                        cursor: "default",
+                        padding: "1rem",
+                        borderRadius: "6px",
+                        background: red.red4,
+                      }}
+                      onClick={() => {
+                        setActiveNote(note.id);
+                        setNote(note.note);
+                      }}
                     >
-                      <TrashComponent />
-                    </span>
-                  </div>
-                );
-              })}
+                      <span>📍 {tn}</span>
+                      <span
+                        className={styles.trash}
+                        onClick={() => {
+                          setNote(" ");
+                          setNotes(removeFromArray(notes, note.id));
+                        }}
+                      >
+                        <TrashComponent />
+                      </span>
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div style={mainSpaceStyle}>
@@ -156,7 +164,8 @@ export default function Home() {
               className={styles.addButton}
               onClick={() => {
                 setNote("");
-                setActiveNote(activeNote + 1);
+                setActiveNote(highestActiveNote++);
+                setHighestActiveNote(highestActiveNote++);
               }}
             >
               <PlusComponent />
