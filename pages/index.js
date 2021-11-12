@@ -48,6 +48,7 @@ const sidebarStyle = {
   width: "25%",
   color: tomato.tomato11,
   borderRight: `1px solid ${blue.blue5}`,
+  overflow: "auto",
 };
 
 const mainSpaceStyle = {
@@ -105,7 +106,7 @@ export default function Home() {
 
       <main>
         <div className={styles.main}>
-          <div style={sidebarStyle}>
+          <div id="sidebar" style={sidebarStyle}>
             <div>
               {notes &&
                 notes.map((note) => {

@@ -1,5 +1,5 @@
 @import "@radix-ui/colors/red.css";
-@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/indigo.css";
 
 html,
 body {
@@ -45,4 +45,33 @@ textarea {
   word-wrap: break-word;
   height: 100%;
   width: 100%;
+  overflow: auto;
+}
+
+#sidebar::-webkit-scrollbar-track {
+  background-color: var(--red3);
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--red3);
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--red6);
+  border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: var(--indigo3);
+}
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--indigo3);
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: var(--indigo6);
+  border-radius: 3px;
 }
