@@ -40,6 +40,6 @@ textarea {
   font-size: 1rem;
   font-family: var(--font-sans);
   word-wrap: break-word;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
