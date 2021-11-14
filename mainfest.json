@@ -1,0 +1,10 @@
+{
+  "name": "Jot Tab Notes",
+  "version": "0.1",
+  "manifest_version": 2,
+  "description": "Offline first, private not taking in the browser",
+  "permissions": [],
+  "chrome_url_overrides": {
+    "newtab": "./index.html"
+  }
+}
