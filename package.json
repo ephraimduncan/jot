@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:extension": "bash bundle.sh"
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.7",
