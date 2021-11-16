@@ -3,7 +3,7 @@
   "version": "0.1",
   "manifest_version": 2,
   "description": "Offline first, private not taking in the browser",
-  "permissions": [],
+  "permissions": ["storage", "scripting"],
   "chrome_url_overrides": {
     "newtab": "./index.html"
   }

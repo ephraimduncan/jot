@@ -1,12 +1,11 @@
 rm -rf .next/ out/;
-rm extension.zip;
+rm ./jot-tab-notes.zip;
 
-yarn build;
+yarn next build;
 yarn next export;
 
-cp manifest.json ./out;
+cp ./manifest.json ./out;
 
-mv ./out/_next ./out/next
-cd ./out && grep -rli '_next' * | xargs -I@ sed -i '' 's/_next/next/g' @;
+node utils/postBuild.js
 
-zip -r -FS ../my-extension.zip *;
+cd out && zip -r -FS ../jot-tab-notes.zip *;
