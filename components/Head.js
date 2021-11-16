@@ -11,7 +11,7 @@ export default function HeadComponent() {
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500&display=swap"
         rel="stylesheet"
       />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
     </Head>
   );
 }
