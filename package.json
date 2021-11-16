@@ -1,11 +1,13 @@
 {
   "name": "thotfull",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:extension": "bash bundle.sh"
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.7",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "eslint": "7",
-    "eslint-config-next": "12.0.3"
+    "eslint-config-next": "12.0.3",
+    "replace-in-files": "^3.0.0"
   }
 }
