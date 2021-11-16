@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function HeadComponent() {
   return (
     <Head>
-      <title>Writer</title>
+      <title>📝 Writer</title>
       <meta name="description" content="Simple Note Taking App" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
