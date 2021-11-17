@@ -1,6 +1,12 @@
 export function truncate(string, maxlength) {
-  const str = string.replace(/(?:\r\n|\r|\n)/g, " ");
-  return str.length > maxlength ? str.slice(0, maxlength).trim() + "..." : str;
+  const noNewLineString =
+    string.length > maxlength
+      ? string.slice(0, maxlength).trim() + "..."
+      : string;
+
+  const newLineString = string.split("\n")[0];
+
+  return string.includes("\n") ? newLineString : noNewLineString;
 }
 
 export function pushToArray(arr, obj) {
