@@ -146,6 +146,7 @@ body {
 
 .ql-editor {
 	padding: 20px;
+	line-height: 2;
 }
 
 .ql-editor.ql-blank::before {
