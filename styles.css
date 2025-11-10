@@ -26,6 +26,10 @@ body {
 	flex-direction: column;
 }
 
+.sidebar.hidden {
+	display: none;
+}
+
 .sidebar-header {
 	padding: 12px;
 	border-bottom: 1px solid #ddd;
@@ -123,6 +127,29 @@ body {
 .delete-btn:hover {
 	background-color: #e0e0e0;
 	color: #000;
+}
+
+/* Toggle Sidebar Button */
+.toggle-sidebar-btn {
+	background: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+	font-size: 18px;
+	color: #444;
+	padding: 5px;
+	margin-right: 10px;
+	width: 28px;
+	height: 24px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.toggle-sidebar-btn:hover {
+	color: #06c;
+}
+
+.toggle-sidebar-btn:active {
+	color: #444;
 }
 
 /* Editor */

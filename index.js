@@ -2,6 +2,7 @@
 	const STORAGE_KEYS = {
 		NOTES: "jot-notes",
 		CURRENT_NOTE_ID: "jot-current-note-id",
+		SIDEBAR_VISIBLE: "jot-sidebar-visible",
 	};
 	const AUTO_SAVE_DELAY = 500;
 	const TITLE_PREVIEW_LENGTH = 30;
@@ -11,6 +12,7 @@
 	let currentNoteId = null;
 	let quill = null;
 	let autoSaveTimer = null;
+	let sidebarVisible = true;
 
 	function generateId() {
 		return Date.now().toString();
@@ -48,14 +50,16 @@
 		try {
 			const notesData = localStorage.getItem(STORAGE_KEYS.NOTES);
 			const currentId = localStorage.getItem(STORAGE_KEYS.CURRENT_NOTE_ID);
+			const sidebarState = localStorage.getItem(STORAGE_KEYS.SIDEBAR_VISIBLE);
 
 			notes = notesData ? JSON.parse(notesData) : [];
 			currentNoteId = currentId;
+			sidebarVisible = sidebarState !== null ? sidebarState === "true" : true;
 
-			return { notes, currentNoteId };
+			return { notes, currentNoteId, sidebarVisible };
 		} catch (error) {
 			console.error("Error loading from storage:", error);
-			return { notes: [], currentNoteId: null };
+			return { notes: [], currentNoteId: null, sidebarVisible: true };
 		}
 	}
 
@@ -65,6 +69,7 @@
 			if (currentNoteId) {
 				localStorage.setItem(STORAGE_KEYS.CURRENT_NOTE_ID, currentNoteId);
 			}
+			localStorage.setItem(STORAGE_KEYS.SIDEBAR_VISIBLE, sidebarVisible.toString());
 		} catch (error) {
 			console.error("Error saving to storage:", error);
 		}
@@ -189,12 +194,30 @@
 		});
 	}
 
+	function toggleSidebar() {
+		sidebarVisible = !sidebarVisible;
+		const sidebar = document.querySelector(".sidebar");
+		sidebar.classList.toggle("hidden");
+		localStorage.setItem(STORAGE_KEYS.SIDEBAR_VISIBLE, sidebarVisible.toString());
+	}
+
 	const debouncedSave = debounce(saveCurrentNote, AUTO_SAVE_DELAY);
 
 	function setupEventListeners() {
 		document
 			.getElementById("new-note-btn")
 			.addEventListener("click", createNewNote);
+
+		document
+			.getElementById("toggle-sidebar-btn")
+			.addEventListener("click", toggleSidebar);
+
+		document.addEventListener("keydown", (e) => {
+			if ((e.metaKey || e.ctrlKey) && e.key === "b") {
+				e.preventDefault();
+				toggleSidebar();
+			}
+		});
 
 		quill.on("text-change", () => {
 			debouncedSave();
@@ -213,7 +236,22 @@
 			theme: "snow",
 		});
 
+		// Create and add toggle button to Quill toolbar
+		const toolbar = document.querySelector(".ql-toolbar");
+		const toggleBtn = document.createElement("button");
+		toggleBtn.id = "toggle-sidebar-btn";
+		toggleBtn.className = "toggle-sidebar-btn";
+		toggleBtn.textContent = "☰";
+		toggleBtn.type = "button";
+		toolbar.prepend(toggleBtn);
+
 		loadFromStorage();
+
+		// Apply initial sidebar visibility state
+		const sidebar = document.querySelector(".sidebar");
+		if (!sidebarVisible) {
+			sidebar.classList.add("hidden");
+		}
 
 		if (notes.length === 0) {
 			createNewNote();
